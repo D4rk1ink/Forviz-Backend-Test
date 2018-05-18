@@ -28,6 +28,14 @@ export class Server {
     }
 
     setRoutes () {
+        this.app.get('/', (req, res) => {
+            res.json({ 'me': 'D@rkL!nk' })
+        })
         this.app.get('/search', searchController.search)
+        this.app.use((req, res) => {
+            res
+                .status(404)
+                .json({ err: 'API not fond :(' })
+        })
     }
 }
